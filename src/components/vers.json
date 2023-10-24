@@ -1,0 +1,131 @@
+[
+    {
+        "id": 1,
+        "tema": "Ambição",
+        "livro": "Efésios",
+        "referencia": "Efésios 5:15-16",
+        "setor": "Novo Testamento",
+        "vers": "Portanto olhai prudentemente como andais, não como tolos, mas sim como sábios. Aproveitando o tempo, porque os dias são maus."
+    },
+    {
+        "id": 2,
+        "tema": "Ambição",
+        "livro": "Filipenses",
+        "referencia": "Filipenses 2:3",
+        "setor": "Novo Testamento",
+        "vers": "Nada façais por rivalidade egoísta ou por vanglória; ao contrário, por humildade cada um considere o outro superior a si mesmo."
+    },
+    {
+        "id": 3,
+        "tema": "Ambição",
+        "livro": "Tessalonissenses",
+        "referencia": "1 Tessalonicenses 4:11",
+        "setor": "Novo Testamento",
+        "vers": "E procureis viver quietos, e tratar de vossos próprios assuntos, e trabalhar com vossas próprias mãos, assim como já temos vos mandado;"
+    },
+    {
+        "id": 4,
+        "tema": "Ambição",
+        "livro": "Tiago",
+        "referencia": "Tiago 3:14",
+        "setor": "Novo Testamento",
+        "vers": "Mas se tendes amarga inveja e rivalidade por interesse próprio no vosso coração, não vos orgulheis nem mintais contra a verdade."
+    },
+    {
+        "id": 5,
+        "tema": "Ambição",
+        "livro": "Tiago",
+        "referencia": "Tiago 4:15",
+        "setor": "Novo Testamento",
+        "vers": "Em vez disso , vosso falar deve ser : Se o Senhor quiser, e vivermos, então faremos isto ou aquilo."
+    },
+    {
+        "id": 6,
+        "tema": "Amizade",
+        "livro": "Salmos",
+        "referencia": "Salmos 25:14",
+        "setor": "Antigo Testamento",
+        "vers": "O segredo do SENHOR é para os que o temem; e ele lhes faz conhecer seu pacto."
+    },
+    {
+        "id": 7,
+        "tema": "Amizade",
+        "livro": "Provérbios",
+        "referencia": "Provérbios 14:10",
+        "setor": "Antigo Testamento",
+        "vers": "O coração conhece sua própria amargura, e o estranho não pode partilhar sua alegria."
+    },
+    {
+        "id": 8,
+        "tema": "Amizade",
+        "livro": "Provérbios",
+        "referencia": "Provérbios 18:24",
+        "setor": "Antigo Testamento",
+        "vers": "O homem que tem amigos pode ser prejudicado por eles; porém há um amigo mais chegado que um irmão."
+    },
+    {
+        "id": 9,
+        "tema": "Amizade",
+        "livro": "Provérbios",
+        "referencia": "Provérbios 19:4",
+        "setor": "Antigo Testamento",
+        "vers": "A riqueza faz ganhar muitos amigos; mas ao pobre, até seu amigo o abandona."
+    },
+    {
+        "id": 10,
+        "tema": "Amizade",
+        "livro": "Provérbios",
+        "referencia": "Provérbios 27:9",
+        "setor": "Antigo Testamento",
+        "vers": "O óleo e o perfume alegram ao coração; assim é a doçura de um amigo com um conselho sincero."
+    },
+    {
+        "id": 11,
+        "tema": "Amizade",
+        "livro": "Provérbios",
+        "referencia": "Provérbios 27:10",
+        "setor": "Antigo Testamento",
+        "vers": "Não abandones o teu amigo, nem o amigo de teu pai; nem entres na casa de teu irmão no dia de tua adversidade; melhor é o vizinho que está perto do que o irmão que está longe."
+    },
+    {
+        "id": 12,
+        "tema": "Amizade",
+        "livro": "Provérbios",
+        "referencia": "Provérbios 27:17",
+        "setor": "Antigo Testamento",
+        "vers": "O ferro é afiado com ferro; assim também o homem afia o rosto de seu amigo."
+    },
+    {
+        "id": 13,
+        "tema": "Amizade",
+        "livro": "Romanos",
+        "referencia": "Romanos 12:15-16",
+        "setor": "Novo Testamento",
+        "vers": "Alegrai-vos com os que se alegram, e chorai com os que choram. Estimai-vos uns aos outros como semelhantes. Não fiqueis pensando com soberba; em vez disso, acompanhai-vos dos humildes. Não sejais sábios apenas a vós mesmos."
+    },
+    {
+        "id": 14,
+        "tema": "Amizade",
+        "livro": "Mateus",
+        "referencia": "Mateus 18:15",
+        "setor": "Novo Testamento",
+        "vers": "Porém, se teu irmão pecar contra ti, vai repreendê-lo entre ti e ele só; se te ouvir, ganhaste o teu irmão."
+    },
+    {
+        "id": 15,
+        "tema": "Amizade",
+        "livro": "2 Coríntios",
+        "referencia": "2 Coríntios 5:20",
+        "setor": "Novo Testamento",
+        "vers": " Assim, pois, nós somos embaixadores da parte de Cristo, como se Deus rogasse por nós; por isso , rogamos em Cristo: Reconciliai-vos com Deus."
+    },
+    {
+        "id": 16,
+        "tema": "Amizade",
+        "livro": "Filipenses",
+        "referencia": "Filipenses 2:2",
+        "setor": "Novo Testamento",
+        "vers": "Portanto, se há alguma consolação em Cristo, se há algum conforto de amor, se há alguma comunhão do Espírito, se há afetos e compaixões, completai a minha alegria: que penseis da mesma maneira, tenhais o mesmo amor, sejais unidos de ânimo, tendo um mesmo modo de pensar."
+    }
+    
+]
