@@ -1,5 +1,5 @@
 Site de exemplo:
-https://everson33rj.github.io/wgbox/
+https://eversondeveloper.github.io/wgbox/
 
 # React + Vite
 
