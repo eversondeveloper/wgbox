@@ -1,11 +1,25 @@
-Site de exemplo:
-https://eversondeveloper.github.io/wgbox/
+# WGBOX — Word of God on the Box
 
-# React + Vite
+Caixinha de promessas bíblicas interativa desenvolvida com React, Vite e Styled Components.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Demonstração:** [eversondeveloper.github.io/wgbox](https://eversondeveloper.github.io/wgbox/)
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Pilha de cards interativa:** Cartões animados com transições suaves e efeitos sonoros ao passar o mouse e ao sortear.
+- **Sorteio de versículos:** Seleção aleatória de promessas baseadas na tradução **Bíblia Livre**.
+- **Histórico recente:** Exibição dos últimos 5 versículos sorteados na barra lateral, com opção de limpeza.
+- **Design responsivo:** Adaptação automática do layout para telas menores.
+
+## Tecnologias utilizadas
+
+- [React 18](https://react.dev/)
+- [Vite](https://vitejs.dev/) (com plugin SWC)
+- [Styled Components](https://styled-components.com/)
+- [ESLint](https://eslint.org/)
+
+## Como executar localmente
+
+1. Clone o repositório:
+   ```bash
+   git clone [https://github.com/eversondeveloper/wgbox.git](https://github.com/eversondeveloper/wgbox.git)

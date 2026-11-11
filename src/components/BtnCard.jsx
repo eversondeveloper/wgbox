@@ -1,393 +1,177 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
-import { BtnCardStyle } from "./BtnCardStyle"
-import { useEffect, useRef, useState } from "react"
-import somHover from "../assets/sounds/hover.mp3"
-import somMensagem from "../assets/sounds/mensagem.mp3"
-import tirandoCarta from "../assets/sounds/tirandocarta.mp3"
+import { useEffect, useState } from "react";
+import {
+  BtnCardStyle,
+  CardBack,
+  CardFront,
+  CardItem,
+  CardNumber,
+} from "./BtnCardStyle";
+import somHover from "../assets/sounds/hover.mp3";
+import somMensagem from "../assets/sounds/mensagem.mp3";
+import tirandoCarta from "../assets/sounds/tirandocarta.mp3";
 
-function BtnCard(props){
+const CARDS_CONFIG = [
+  { id: "card16", bg: "#FF007F", color: "#fff", scale: 0.35, zIndex: 1 },
+  { id: "card15", bg: "#00E5FF", color: "#000", scale: 0.4, zIndex: 2 },
+  { id: "card14", bg: "#6200EA", color: "#fff", scale: 0.45, zIndex: 3 },
+  { id: "card13", bg: "#FFD600", color: "#000", scale: 0.5, zIndex: 4 },
+  { id: "card12", bg: "#FF3D00", color: "#fff", scale: 0.55, zIndex: 5 },
+  { id: "card11", bg: "#00E676", color: "#000", scale: 0.6, zIndex: 6 },
+  { id: "card10", bg: "#2962FF", color: "#fff", scale: 0.65, zIndex: 7 },
+  { id: "card9", bg: "#FF9100", color: "#000", scale: 0.7, zIndex: 8 },
+  { id: "card8", bg: "#D500F9", color: "#fff", scale: 0.75, zIndex: 9 },
+  { id: "card7", bg: "#AEEA00", color: "#000", scale: 0.8, zIndex: 10 },
+  { id: "card6", bg: "#C51162", color: "#fff", scale: 0.85, zIndex: 11 },
+  { id: "card5", bg: "#1DE9B6", color: "#000", scale: 0.9, zIndex: 12 },
+  { id: "card4", bg: "#304FFE", color: "#fff", scale: 0.95, zIndex: 13 },
+  { id: "card3", bg: "#FFEA00", color: "#000", scale: 1, zIndex: 14 },
+];
 
-    const animRefCard3 = useRef()
-    const animRefCard4 = useRef()
-    const animRefCard5 = useRef()
-    const animRefCard6 = useRef()
-    const animRefCard7 = useRef()
-    const animRefCard8 = useRef()
-    const animRefCard9 = useRef()
-    const animRefCard10 = useRef()
-    const animRefCard11 = useRef()
-    const animRefCard12 = useRef()
-    const animRefCard13 = useRef()
-    const animRefCard14 = useRef()
-    const animRefCard15 = useRef()
+function BtnCard({ versPromessas }) {
+  const [isCardOpen, setIsCardOpen] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [cardAtual, setCardAtual] = useState("");
+  const [mensagemAtual, setMensagemAtual] = useState(null);
+  const [historico, setHistorico] = useState([]);
 
-    
-    const [cardAtual, setCardAtual] = useState("")
-    const [contAside2, setContAside2] = useState("")
-    const [contAside21, setContAside21] = useState("")
-    const [contAside22, setContAside22] = useState("")
-    const [contAside23, setContAside23] = useState("")
-    const [contAside24, setContAside24] = useState("")
-    const cor1 = "#29A5F2"
-    const cor2 = "#3DD980"
-    const cor3 = "#A7F205"
-    const cor4 = "#F25757"
-    const cor5 = "#e4e4e4"
-    
-    const conteudo = useRef()
+  const playHoverSound = () => {
+    const audio = new Audio(somHover);
+    audio.volume = 0.3;
+    audio.play().catch(() => {});
+  };
 
-    let somH = ()=>{
-        let somHoverF = new Audio(somHover)
-        somHoverF.volume = .3
-        somHoverF.play()
+  useEffect(() => {
+    if (!hasInteracted) return;
+
+    const audioCarta = new Audio(tirandoCarta);
+    audioCarta.volume = 0.3;
+    audioCarta.play().catch(() => {});
+
+    if (!isCardOpen) {
+      const closeTimer = setTimeout(() => {
+        setMensagemAtual(null);
+        setCardAtual("");
+        setHasInteracted(false);
+      }, 1000);
+
+      return () => clearTimeout(closeTimer);
     }
-    
-    useEffect(()=>{
-        let int = setTimeout(()=>{
-            if(props.card == true){
-                let somMens = new Audio(somMensagem)
-                somMens.volume = .3
-                somMens.play()
-            }   
-        },1000)
 
-        return ()=>{clearTimeout(int)}
-    },[props.card])
+    const numAleatorio = Math.floor(Math.random() * versPromessas.length);
+    const sorteado = versPromessas[numAleatorio];
+    setMensagemAtual(sorteado);
 
-    useEffect(()=>{        
-        
-                let tiraCarta = new Audio(tirandoCarta)
-                tiraCarta.volume = .3
-                tiraCarta.play()                
-                
-            },[props.card])
-            
-            useEffect(()=>{
+    const timer = setTimeout(() => {
+      const audioMensagem = new Audio(somMensagem);
+      audioMensagem.volume = 0.3;
+      audioMensagem.play().catch(() => {});
 
-                let numAleatorio = Math.floor(Math.random() * (props.versPromessas.length - 1))
-                
-                props.card == true ? 
+      setHistorico((prev) => {
+        if (prev.length >= 5) return prev;
+        return [...prev, `"${sorteado.vers}" (${sorteado.referencia})`];
+      });
+    }, 5000);
 
-                (
-                    
-                    props.setMensagem(<blockquote>"{props.versPromessas[numAleatorio].vers.toString()}" <strong>({props.versPromessas[numAleatorio].referencia.toString()})</strong></blockquote>)                   
+    return () => clearTimeout(timer);
+  }, [isCardOpen, hasInteracted, versPromessas]);
 
-                    // conteudo.current.textContent += `${props.versPromessas[numAleatorio].vers} ${props.versPromessas[numAleatorio].referencia}`
-                
-                )
+  const handleCardClick = (id) => {
+    setHasInteracted(true);
 
-                :
-                setTimeout(()=>{
-                    
-                },1000)
+    if (isCardOpen) {
+      setIsCardOpen(false);
+    } else {
+      setCardAtual(id);
+      setIsCardOpen(true);
+    }
+  };
 
-                setTimeout(()=>{
-                    if(contAside2 == "" && contAside2 != undefined && props.card == true){
-                        setContAside2(`"${props.versPromessas[numAleatorio].vers}" (${props.versPromessas[numAleatorio].referencia})`.toString())
-                    }else if(contAside21 == "" && contAside21 != undefined && props.card == true){
-                            setContAside21(`"${props.versPromessas[numAleatorio].vers}" (${props.versPromessas[numAleatorio].referencia})`.toString())
-                    }else if(contAside22 == "" && contAside22 != undefined && props.card == true){
-                        setContAside22(`"${props.versPromessas[numAleatorio].vers}" (${props.versPromessas[numAleatorio].referencia})`.toString())
-                    }else if(contAside23 == "" && contAside23 != undefined && props.card == true){
-                        setContAside23(`"${props.versPromessas[numAleatorio].vers}" (${props.versPromessas[numAleatorio].referencia})`.toString())
-                    }else if(contAside24 == "" && contAside24 != undefined && props.card == true){
-                        setContAside24(`"${props.versPromessas[numAleatorio].vers}" (${props.versPromessas[numAleatorio].referencia})`.toString())
-                    }
-                }, 1000)
-                                
-            },[props.card])
-
-
-    return <BtnCardStyle className="card2"  corCardBack={props.corCardBack} setCorCardBack={props.setCorCardBack} corCardBorda={props.corCardBorda} setCorCardBorda={props.setCorCardBorda} card={props.card} setCard={props.setCard} cor1={cor1} cor2={cor2} cor3={cor3} cor4={cor4} cor5={cor5} cardAtual={cardAtual} contAside24={contAside24} >
-        
-        <div className="aside1">
-            <div>
-                <p>Desenvolvido por <br/>
-                <a href="https://everson33rj.github.io/digitalbusinesscard/" target="blank">Everson Silva</a>
-                </p>
-                <p>Bíblia Versão<br/>
-                <a href="https://sites.google.com/site/biblialivre/" target="blank">Biblia Livre</a>
-                </p>
-                <p>Efeitos sonoros<br/>
-                <a href="https://pixabay.com/pt/" target="blank">pixbay</a>
-                </p>
-                
-                <p>WGBOX - 2023<br/>
-                Word of God on the Box
-                </p>
-            </div>
+  return (
+    <BtnCardStyle>
+      <aside className="aside1">
+        <div>
+          <p>
+            Desenvolvido por <br />
+            <a
+              href="https://everson33rj.github.io/digitalbusinesscard/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Everson Silva
+            </a>
+          </p>
+          <p>
+            Bíblia Versão <br />
+            <a
+              href="https://sites.google.com/site/biblialivre/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Bíblia Livre
+            </a>
+          </p>
+          <p>
+            Efeitos sonoros <br />
+            <a
+              href="https://pixabay.com/pt/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pixabay
+            </a>
+          </p>
+          <p>
+            WGBOX - 2023 <br />
+            Word of God on the Box
+          </p>
         </div>
-        
-        <div className="mainGeral">
-        <div className="card15" ref={animRefCard15}  onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
+      </aside>
 
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
+      <main className="mainGeral">
+        {CARDS_CONFIG.map((item, index) => {
+          const isActive = isCardOpen && cardAtual === item.id;
 
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-                
-            )
-            
-        }} >{cardAtual == "card15" ? props.mensagem : ""}</div>
-        <div className="card14" ref={animRefCard14}  onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
+          return (
+            <CardItem
+              key={item.id}
+              $scale={item.scale}
+              $zIndex={item.zIndex}
+              $isActive={isActive}
+              $hasInteracted={hasInteracted && cardAtual === item.id}
+              onMouseEnter={playHoverSound}
+              onClick={() => handleCardClick(item.id)}
+            >
+              <CardNumber $scale={item.scale} $isActive={isActive}>
+                <span>{index + 1}</span>
+              </CardNumber>
+              <CardFront $bg={item.bg} $color={item.color}>
+                {cardAtual === item.id && mensagemAtual && (
+                  <blockquote>
+                    &ldquo;{mensagemAtual.vers}&rdquo;{" "}
+                    <strong>({mensagemAtual.referencia})</strong>
+                  </blockquote>
+                )}
+              </CardFront>
+              <CardBack $bg={item.bg} $color={item.color} />
+            </CardItem>
+          );
+        })}
+      </main>
 
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card14" ? props.mensagem : ""}</div>
-        <div className="card13" ref={animRefCard13}  onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card13" ? props.mensagem : ""}</div>
-        <div className="card12"  ref={animRefCard12} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card12" ? props.mensagem : ""}</div>
-        <div className="card11"  ref={animRefCard11} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card11" ? props.mensagem : ""}</div>
-        <div className="card10" ref={animRefCard10} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card10" ? props.mensagem : ""}</div>
-        <div className="card9"  ref={animRefCard9} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card9" ? props.mensagem : ""}</div>
-        <div className="card8"  ref={animRefCard8} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card8" ? props.mensagem : ""}</div>
-        <div className="card7"  ref={animRefCard7} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card7" ? props.mensagem : ""}</div>
-        <div className="card6"  ref={animRefCard6} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card6" ? props.mensagem : ""}</div>
-        <div className="card5"  ref={animRefCard5} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-            )
-            :
-            (
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-            
-        }} >{cardAtual == "card5" ? props.mensagem : ""}</div>
-
-        <div className="card4" ref={animRefCard4} value="card4"  onMouseEnter={()=>{            
-            somH()
-        }} onClick={(e)=>{
-
-            setCardAtual("card4")
-            
-            props.card == true 
-            ?            
-            (               
-                props.setCard(false)
-            )
-            :
-            (
-
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                
-            )
-                
-        }} >{cardAtual == "card4" ? props.mensagem : ""}</div>
-
-        <div className="card3" id="card3" ref={animRefCard3} onMouseEnter={()=>{
-            somH()
-        }} onClick={(e)=>{
-
-            props.card == true 
-            ?            
-            (
-                
-                props.setCard(false)
-
-            )
-            :
-            (
-
-                setCardAtual(e.target.className),
-                props.setCard(true)
-                               
-            )
-            
-        }} >{cardAtual == "card3" ? props.mensagem : ""}</div>
+      <aside className="aside2">
+        <div>
+          {historico.map((texto, index) => (
+            <p key={index}>{texto}</p>
+          ))}
         </div>
-        <div className="aside2" ref={conteudo} >
-
-            
-            <div>
-                <p>{contAside2}</p>
-                <p>{contAside21}</p>
-                <p>{contAside22}</p>
-                <p>{contAside23}</p>
-                <p>{contAside24}</p>
-            </div>
-            {contAside24 != "" ? 
-                <input type="button" value="Limpar" onClick={()=>{
-                    setContAside2("")
-                    setContAside21("")
-                    setContAside22("")
-                    setContAside23("")
-                    setContAside24("")
-                }} />
-            :
-            ""    
-        }
-        </div>
-
+        {historico.length >= 5 && (
+          <button type="button" onClick={() => setHistorico([])}>
+            Limpar
+          </button>
+        )}
+      </aside>
     </BtnCardStyle>
+  );
 }
 
-export default BtnCard
+export default BtnCard;
